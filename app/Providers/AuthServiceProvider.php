@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Post;
 use App\User;
+use App\Permission;
 use App\Policies\PostPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -16,7 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-       Post::class => PostPolicy::class,
+       //Post::class => PostPolicy::class,
     ];
 
     /**
@@ -27,5 +28,13 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        $permissions = Permission::with('roles')->get();
+
+        foreach ($permissions as $permission) {
+            Gate::define($permission->name, function (User $user) use ($permission) {
+                return $user->hasPermission($permission);
+            });
+        }
     }
 }
