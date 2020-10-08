@@ -19,25 +19,25 @@
 
 <div class="container">
     <h1 class="title">
-        Posts List
+        Users List
     </h1>
 
     <table class="table table-hover">
         <tr>
-            <th>Title</th>
-            <th>Description</th>
+            <th>Name</th>
+            <th>E-Mail</th>
             <th width="100px">Ações</th>
         </tr>
 
-        @forelse( $posts as $post )
+        @forelse( $users as $user )
         <tr>
-            <td>{{$post->title}}</td>
-            <td>{{$post->description}}</td>
+            <td>{{$user->name}}</td>
+            <td>{{$user->email}}</td>
             <td>
-                <a href="{{url("/painel/post/$post->id/edit")}}" class="edit">
+                <a href="{{url("/painel/user/$user->id/edit")}}" class="edit">
                     <i class="fa fa-pencil-square-o"></i>
                 </a>
-                <a href="{{url("/painel/post/$post->id/delete")}}" class="delete">
+                <a href="{{url("/painel/user/$user->id/delete")}}" class="delete">
                     <i class="fa fa-trash"></i>
                 </a>
             </td>

@@ -19,25 +19,22 @@
 
 <div class="container">
     <h1 class="title">
-        Posts List
+    Permissions <b>{{$role->name}}</b>
     </h1>
 
     <table class="table table-hover">
         <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th width="100px">Ações</th>
+            <th>Name</th>
+            <th>Label</th>
+            <th width="150px">Ações</th>
         </tr>
 
-        @forelse( $posts as $post )
+        @forelse( $permissions as $permission )
         <tr>
-            <td>{{$post->title}}</td>
-            <td>{{$post->description}}</td>
+            <td>{{$permission->name}}</td>
+            <td>{{$permission->label}}</td>
             <td>
-                <a href="{{url("/painel/post/$post->id/edit")}}" class="edit">
-                    <i class="fa fa-pencil-square-o"></i>
-                </a>
-                <a href="{{url("/painel/post/$post->id/delete")}}" class="delete">
+                <a href="{{url("/painel/role/$role->id/delete")}}" class="delete">
                     <i class="fa fa-trash"></i>
                 </a>
             </td>
@@ -45,7 +42,7 @@
         @empty
         <tr>
             <td colspan="90">
-                <p>Nenhum Resultado!</p>
+                 <p>Sem restrições</p>   
             </td>
         </tr>
         @endforelse
