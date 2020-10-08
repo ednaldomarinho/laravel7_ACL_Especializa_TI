@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Post;
 use App\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PostPolicy
@@ -22,7 +23,9 @@ class PostPolicy
 
     public function updatePost(User $user, Post $post)
     {
-           
-            return $user->id === $post->user_id;
+            
+            return $user->id == $post->user_id;
+        
+        //return $user->id == $post->user_id;
     }
 }
